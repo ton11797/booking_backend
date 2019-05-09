@@ -1,6 +1,13 @@
 import baseLogic from './baseLogic'
 import { default as bcrypt } from 'bcrypt'
 export default class {
+    async entry(req){
+        if(req.params.method ==="login")return await this.login(req)
+        if(req.params.method ==="logout")return await this.logout(req)
+        if(req.params.method ==="checkLogin")return await this.checkLogin(req)
+        if(req.params.method ==="isLogin")return await this.isLogin(req)
+        if(req.params.method ==="register")return await this.register(req)
+    }
     async login(req){
         let ob = new baseLogic("users")
         let {username,password} = req.body
@@ -9,7 +16,7 @@ export default class {
         if (resultPass){
             let obS = new baseLogic("session")
             await obS.Delete({username})
-            await obS.Add({sessionID:req.sessionID,username})
+            await obS.Add({sessionID:req.sessionID,username,admin:result[0].role==="admin"?true:false})
             return "success"
         }else{
             throw "login fail"
@@ -43,7 +50,7 @@ export default class {
             bcrypt.hash(myPlaintextPassword, saltRounds, async (err, hash) =>{
                 if(err)throw err
                 password = hash
-                await ob.Add({username,password})
+                await ob.Add({username,password,role:"user"})
             });
             return "success"
         }else{

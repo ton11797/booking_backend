@@ -1,0 +1,191 @@
+{
+	"variables": [],
+	"info": {
+		"name": "project web",
+		"_postman_id": "59f07982-d9bc-524f-3766-4d165f947a9d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getBooking",
+			"request": {
+				"url": "http://localhost:8081/api/room/getBooking",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//request with {} for get all booking data\n{\n\t\n}\n//key for filter roomName time present\n//\"roomName\":\"test\" for specific room test\n//\"time\":12 find which room booked between specific time\n//\"present\":\"\" filter out past booked with current date time\n//put key in json if you want use that filter\n{\n\t\"roomName\":\"\"\n}\n{\n\t\"roomName\":\"\",  \n\t\"time\":12,\n\t\"present\":\"\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"url": "http://localhost:8081/api/auth/logout",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "checkLogin",
+			"request": {
+				"url": "http://localhost:8081/api/auth/checkLogin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"url": "http://localhost:8081/api/auth/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"test\",\n\t\"password\":\"test\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "createRoom",
+			"request": {
+				"url": "http://localhost:8081/api/room/createRoom",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"roomName\":\"6072\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "removeRoom",
+			"request": {
+				"url": "http://localhost:8081/api/room/removeRoom",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"roomName\":\"6072\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "cancelBooking",
+			"request": {
+				"url": "http://localhost:8081/api/room/cancelBooking",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\":\"5cd2d87a712d5253620d5e55\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "booking",
+			"request": {
+				"url": "http://localhost:8081/api/room/bookingRoom",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"roomName\":\"test\",\n\t\"start\":51,\n\t\"end\" :52\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getRoom",
+			"request": {
+				"url": "http://localhost:8081/api/room/getRoom",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

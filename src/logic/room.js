@@ -2,6 +2,14 @@ import baseLogic from './baseLogic'
 import security from './security'
 import { ObjectId } from 'mongodb'
 export default class {
+    async entry(req){
+        if(req.params.method ==="createRoom")return await this.createRoom(req)
+        if(req.params.method ==="removeRoom")return await this.removeRoom(req)
+        if(req.params.method ==="bookingRoom")return await this.bookingRoomU(req)
+        if(req.params.method ==="cancelBooking")return await this.cancelBooking(req)
+        if(req.params.method ==="getBooking")return await this.getBooking(req)
+        if(req.params.method ==="getRoom")return await this.getRoom(req)
+    }
     async createRoom(req){
         let {roomName}=  req.body
         let auth = new security()
@@ -24,6 +32,11 @@ export default class {
         await ob.Delete({roomName})
         return "success"
     }
+    async getRoom(req){
+        let ob = new baseLogic("room")
+        return await ob.Get({})
+    }
+
     async bookingRoomU(req){
         let auth = new security()
         let user = await auth.checkLogin(req)
