@@ -57,7 +57,7 @@ export default class {
             bcrypt.hash(myPlaintextPassword, saltRounds, async (err, hash) =>{
                 if(err)throw err
                 password = hash
-                await ob.Add({username,password,firstname,lastname,role:"user",available:true})
+                await ob.Add({username,password,firstName:firstname,lastName:lastname,role:"user",available:true})
             });
             return "success"
         }else{
