@@ -109,6 +109,15 @@ export default class {
             return "success"
         }
     }
+    async editBooking(req){
+        let auth = new security()
+        let user = await auth.checkLogin(req)
+        if(user === null)throw "not login"
+        if(user.role ==="user")throw "Permission denied"
+        let {_id,data}=req.body
+        let ob = new baseLogic("booking")
+        return await ob.Edit({condition:{_id:new ObjectId(_id)},data}) 
+    }
     async getBooking(req){
         let {roomName,time,present}= req.body
         let obR = new baseLogic("booking")
