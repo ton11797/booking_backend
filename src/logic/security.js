@@ -22,7 +22,8 @@ export default class {
         if (resultPass){
             let obS = new baseLogic("session")
             await obS.Delete({username})
-            await obS.Add({sessionID:req.sessionID,username,role:result[0].role})
+            await obS.Delete({sessionID:req.sessionID})
+            await obS.Add({sessionID:req.sessionID,username,role:result[0].role,firstName:result[0].firstName,lastName:result[0].lastName})
             return "success"
         }else{
             throw "login fail"
