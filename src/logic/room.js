@@ -10,6 +10,7 @@ export default class {
         if(req.params.method ==="getBooking")return await this.getBooking(req)
         if(req.params.method ==="getRoom")return await this.getRoom(req)
         if(req.params.method ==="editRoom")return await this.editRoom(req)
+        if(req.params.method ==="editBooking")return await this.editBooking(req)
         
     }
     async editRoom(req){
@@ -79,6 +80,7 @@ export default class {
         let room = await ob.Get({roomName})
         if(room.length !== 0 ){
             for(let i=0;i< room.length;i++){
+                if(room[i].status ==="denied")continue;
                 if(room[i].end <= start ){
                 }else if(room[i].start >= end){
                 }else{
@@ -116,6 +118,7 @@ export default class {
         if(user.role ==="user")throw "Permission denied"
         let {_id,data}=req.body
         let ob = new baseLogic("booking")
+        console.log({condition:{_id:new ObjectId(_id)},data})
         return await ob.Edit({condition:{_id:new ObjectId(_id)},data}) 
     }
     async getBooking(req){
