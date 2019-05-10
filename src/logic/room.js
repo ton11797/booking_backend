@@ -88,7 +88,7 @@ export default class {
             await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,description})
             return "success"            
         }else{
-            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,descirption})
+            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,description})
             return "success"
         }
     }
