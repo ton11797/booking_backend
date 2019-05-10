@@ -48,7 +48,7 @@ export default class {
 
     async register(req){
         let ob = new baseLogic("users")
-        let {username,password,firstName,lastName} = req.body
+        let {username,password,firstname,lastname} = req.body
         let result = await ob.Get({username})
         if(result.length === 0){
             const saltRounds = 10;
@@ -56,7 +56,7 @@ export default class {
             bcrypt.hash(myPlaintextPassword, saltRounds, async (err, hash) =>{
                 if(err)throw err
                 password = hash
-                await ob.Add({username,password,firstName,lastName,role:"user",status:true})
+                await ob.Add({username,password,firstname,lastname,role:"user",available:true})
             });
             return "success"
         }else{
