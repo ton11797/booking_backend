@@ -65,7 +65,7 @@ export default class {
     }
 
     async removeUser(req){
-        let user = this.checkLogin(req)
+        let user = await this.checkLogin(req)
         if(user === null)throw "not login"
         if(user.role !=="admin")throw "Permission denied"
         let {username}=req.body
@@ -74,7 +74,7 @@ export default class {
     }
 
     async editUser(req){
-        let user = this.checkLogin(req)
+        let user = await this.checkLogin(req)
         if(user === null)throw "not login"
         if(user.role !=="admin")throw "Permission denied"
         let {username,data}=req.body
@@ -83,7 +83,7 @@ export default class {
     }
 
     async getUser(req){
-        let user = this.checkLogin(req)
+        let user = await this.checkLogin(req)
         if(user === null)throw "not login"
         let ob = new baseLogic("users")
         return await ob.Get({})
