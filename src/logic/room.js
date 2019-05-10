@@ -64,7 +64,7 @@ export default class {
         return await this.bookingRoom(req.body)
     }
     async bookingRoom(para){
-        let {roomName,start,end,username,equipment,subject,description} = para
+        let {roomName,start,end,username,equipment,user,subject,description} = para
         let status = "waiting"
         let checkout = false
         // if(start<1000000000000)start=start*1000
@@ -85,10 +85,10 @@ export default class {
                     throw room[i]
                 }
             }
-            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,description})
+            await ob.Add({roomName,start,end,username,equipment,user,subject,status,checkout,description})
             return "success"            
         }else{
-            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,description})
+            await ob.Add({roomName,start,end,username,equipment,user,subject,status,checkout,description})
             return "success"
         }
     }
