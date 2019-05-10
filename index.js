@@ -14,14 +14,16 @@ app.use(cors({
   credentials: true
 }))
 
+//express session for authentication
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
   cookie: {  }
 }))
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(MainRouter)
+app.use(MainRouter) //enpoint route
 app.listen(PORT)
 console.log(`Service is running on port ${PORT}.`)

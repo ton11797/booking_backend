@@ -1,12 +1,17 @@
 import baseLogic from './baseLogic'
 import { default as bcrypt } from 'bcrypt'
 export default class {
+    
     async entry(req){
         if(req.params.method ==="login")return await this.login(req)
         if(req.params.method ==="logout")return await this.logout(req)
         if(req.params.method ==="checkLogin")return await this.checkLogin(req)
         if(req.params.method ==="isLogin")return await this.isLogin(req)
         if(req.params.method ==="register")return await this.register(req)
+        if(req.params.method ==="removeUser")return await this.removeUser(req)
+        if(req.params.method ==="editUser")return await this.editUser(req)
+        if(req.params.method ==="getUser")return await this.getUser(req)
+        
     }
     async login(req){
         let ob = new baseLogic("users")
@@ -16,7 +21,7 @@ export default class {
         if (resultPass){
             let obS = new baseLogic("session")
             await obS.Delete({username})
-            await obS.Add({sessionID:req.sessionID,username,admin:result[0].role==="admin"?true:false})
+            await obS.Add({sessionID:req.sessionID,username,role:result[0].role})
             return "success"
         }else{
             throw "login fail"
@@ -42,7 +47,7 @@ export default class {
 
     async register(req){
         let ob = new baseLogic("users")
-        let {username,password} = req.body
+        let {username,password,firstName,lastName} = req.body
         let result = await ob.Get({username})
         if(result.length === 0){
             const saltRounds = 10;
@@ -50,11 +55,37 @@ export default class {
             bcrypt.hash(myPlaintextPassword, saltRounds, async (err, hash) =>{
                 if(err)throw err
                 password = hash
-                await ob.Add({username,password,role:"user"})
+                await ob.Add({username,password,firstName,lastName,role:"user",status:true})
             });
             return "success"
         }else{
             throw "Username exist"
         }
+    }
+
+    async removeUser(req){
+        let user = this.checkLogin(req)
+        if(user === null)throw "not login"
+        if(user.role !=="admin")throw "Permission denied"
+        let {username}=req.body
+        let ob = new baseLogic("users")
+        return await ob.Delete({username})
+    }
+
+    async editUser(req){
+        let user = this.checkLogin(req)
+        if(user === null)throw "not login"
+        if(user.role !=="admin")throw "Permission denied"
+        let {username,data}=req.body
+        let ob = new baseLogic("users")
+        return await ob.Edit({condition:{username},data})
+    }
+
+    async getUser(req){
+        let user = this.checkLogin(req)
+        if(user === null)throw "not login"
+        if(user.role !=="admin")throw "Permission denied"
+        let ob = new baseLogic("users")
+        return await ob.Get({})
     }
 }

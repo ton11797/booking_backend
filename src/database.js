@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb'
 import { DB_SERVER } from './config'
 
+//this class for database connection layer with Promise(asynchronous)
 export default class database {
   constructor (collectionName) {
     this.Collection = collectionName

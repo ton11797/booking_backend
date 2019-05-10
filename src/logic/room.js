@@ -9,15 +9,29 @@ export default class {
         if(req.params.method ==="cancelBooking")return await this.cancelBooking(req)
         if(req.params.method ==="getBooking")return await this.getBooking(req)
         if(req.params.method ==="getRoom")return await this.getRoom(req)
+        if(req.params.method ==="editRoom")return await this.editRoom(req)
+        
     }
-    async createRoom(req){
-        let {roomName}=  req.body
+    async editRoom(req){
         let auth = new security()
         let user = await auth.checkLogin(req)
         if(user === null)throw "not login"
+        if(user.role !=="admin")throw "Permission denied"
+        let {_id,data} = req.body
+        let ob = new baseLogic("room")
+        console.log({condition:{_id:new ObjectId(_id)},data})
+        return await ob.Edit({condition:{_id:new ObjectId(_id)},data})      
+        
+    }
+    async createRoom(req){
+        let {roomName,support}=  req.body
+        let auth = new security()
+        let user = await auth.checkLogin(req)
+        if(user === null)throw "not login"
+        if(user.role !=="admin")throw "Permission denied"
         let ob = new baseLogic("room")
         if((await ob.Get({roomName})).length ===0){
-            await ob.Add({roomName,createBy:user.username})
+            await ob.Add({roomName,support,createBy:user.username})
             return "success"
         }else{
             throw "Room name exist"
@@ -28,6 +42,7 @@ export default class {
         let auth = new security()
         let user = await auth.checkLogin(req)
         if(user === null)throw "not login"
+        if(user.role !=="admin")throw "Permission denied"
         let ob = new baseLogic("room")
         await ob.Delete({roomName})
         return "success"
@@ -45,7 +60,9 @@ export default class {
         return await this.bookingRoom(req.body)
     }
     async bookingRoom(para){
-        let {roomName,start,end,username} = para
+        let {roomName,start,end,username,equipment,subject,descirption} = para
+        let status = 1
+        let checkout = false
         // if(start<1000000000000)start=start*1000
         // if(end<1000000000000)end=end*1000
         let time = new Date().getTime()
@@ -65,10 +82,10 @@ export default class {
                     throw room[i]
                 }
             }
-            await ob.Add({roomName,start,end,username})
+            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,descirption})
             return "success"            
         }else{
-            await ob.Add({roomName,start,end,username})
+            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,descirption})
             return "success"
         }
     }
@@ -78,7 +95,7 @@ export default class {
         if(user === null)throw "not login"
         let {_id}= req.body
         let ob = new baseLogic("booking")
-        if(user.admin ===true){
+        if(user.role ==="admin"){
             let result = await ob.Delete({_id:new ObjectId(_id)})
             if(result.result.n === 0)throw "booking not found"
             return "success"

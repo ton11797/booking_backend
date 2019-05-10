@@ -8,184 +8,322 @@
 	},
 	"item": [
 		{
-			"name": "getBooking",
-			"request": {
-				"url": "http://localhost:8081/api/room/getBooking",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+			"name": "room",
+			"description": "",
+			"item": [
+				{
+					"name": "getBooking",
+					"request": {
+						"url": "http://localhost:8081/api/room/getBooking",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "//request with {} for get all booking data\n{\n\t\n}\n//key for filter roomName time present\n//\"roomName\":\"test\" for specific room test\n//\"time\":12 find which room booked between specific time\n//\"present\":\"\" filter out past booked with current date time\n//put key in json if you want use that filter\n{\n\t\"roomName\":\"\"\n}\n{\n\t\"roomName\":\"\",  \n\t\"time\":12,\n\t\"present\":\"\"\n}"
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "//request with {} for get all booking data\n{\n\t\n}\n//key for filter roomName time present\n//\"roomName\":\"test\" for specific room test\n//\"time\":12 find which room booked between specific time\n//\"present\":\"\" filter out past booked with current date time\n//put key in json if you want use that filter\n{\n\t\"roomName\":\"\"\n}\n{\n\t\"roomName\":\"\",  \n\t\"time\":12,\n\t\"present\":\"\"\n}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "createRoom",
+					"request": {
+						"url": "http://localhost:8081/api/room/createRoom",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roomName\":\"6072\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "removeRoom",
+					"request": {
+						"url": "http://localhost:8081/api/room/removeRoom",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roomName\":\"6072\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "cancelBooking",
+					"request": {
+						"url": "http://localhost:8081/api/room/cancelBooking",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\":\"5cd2d87a712d5253620d5e55\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "booking",
+					"request": {
+						"url": "http://localhost:8081/api/room/bookingRoom",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roomName\":\"test\",\n\t\"start\":51,\n\t\"end\" :52\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getRoom",
+					"request": {
+						"url": "http://localhost:8081/api/room/getRoom",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "editRoom",
+					"request": {
+						"url": "http://localhost:8081/api/room/editRoom",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\":\"5cd523064bff0684be3c7c6c\",\n\t\"data\":{\n\t\t\"support\":\"asd\"\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "logout",
-			"request": {
-				"url": "http://localhost:8081/api/auth/logout",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "logout",
+					"request": {
+						"url": "http://localhost:8081/api/auth/logout",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\n}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "checkLogin",
+					"request": {
+						"url": "http://localhost:8081/api/auth/checkLogin",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"url": "http://localhost:8081/api/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"test\",\n\t\"password\":\"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"url": "http://localhost:8081/api/auth/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"ton\",\n\t\"password\":\"ton\",\n\t\"firstName\":\"ton\",\n\t\"lastName\":\"ton\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "checkLogin",
-			"request": {
-				"url": "http://localhost:8081/api/auth/checkLogin",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+			"name": "equipment",
+			"description": "",
+			"item": [
+				{
+					"name": "getEquipment",
+					"request": {
+						"url": "http://localhost:8081/api/equipment/getEquipment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\n}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "login",
-			"request": {
-				"url": "http://localhost:8081/api/auth/login",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+				{
+					"name": "removeEquipment",
+					"request": {
+						"url": "http://localhost:8081/api/equipment/removeEquipment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"equipmentName\":\"test\"\n}"
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\":\"test\",\n\t\"password\":\"test\"\n}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "createRoom",
-			"request": {
-				"url": "http://localhost:8081/api/room/createRoom",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+				{
+					"name": "createEquipment",
+					"request": {
+						"url": "http://localhost:8081/api/equipment/createEquipment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"equipmentName\":\"test\",\n\t\"description\":\"test\"\n}"
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"roomName\":\"6072\"\n}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "removeRoom",
-			"request": {
-				"url": "http://localhost:8081/api/room/removeRoom",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+				{
+					"name": "editEquipment",
+					"request": {
+						"url": "http://localhost:8081/api/equipment/editEquipment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\":\"5cd526eaa92d8885887330b1\",\n\t\"data\":{\n\t\t\"description\":\"asd\"\n\t}\n}"
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"roomName\":\"6072\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "cancelBooking",
-			"request": {
-				"url": "http://localhost:8081/api/room/cancelBooking",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"_id\":\"5cd2d87a712d5253620d5e55\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "booking",
-			"request": {
-				"url": "http://localhost:8081/api/room/bookingRoom",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"roomName\":\"test\",\n\t\"start\":51,\n\t\"end\" :52\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "getRoom",
-			"request": {
-				"url": "http://localhost:8081/api/room/getRoom",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\n}"
-				},
-				"description": ""
-			},
-			"response": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

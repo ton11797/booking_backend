@@ -1,0 +1,17 @@
+index.js is main script
+src/ contain code file
+
+
+src/config.js configuration for system
+src/database.js database connection
+src/result.js template respond message
+src/router.js router
+
+src/logic contain all logic class file
+src/logic/baseLogic.js contain base function for add edit delete data on database
+src/login/room.js logic room management and booking
+src/login/equipment.js  logic equipment management
+src/login/security.js   logic security and authentication
+
+route will pass request to logic class
+

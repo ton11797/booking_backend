@@ -1,3 +1,4 @@
+//this file contain configuration for system
 const DB_SERVER = {
     host: 'localhost',
     port: 27017,
