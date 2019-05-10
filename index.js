@@ -7,7 +7,7 @@ const app = new express()
 const PORT = 8081
 
 app.use(cors({
-  "origin": "*",
+  "origin": ["http://localhost:8080"],
   "methods": "GET,HEAD,PUT,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204,

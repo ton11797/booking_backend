@@ -33,13 +33,17 @@ export default class {
         }
     }
     async removeEquipment(req){
-        let {equipmentName}=  req.body
+        let {equipmentName,_id}=  req.body
         let auth = new security()
         let user = await auth.checkLogin(req)
         if(user === null)throw "not login"
         if(user.role !=="admin")throw "Permission denied"
         let ob = new baseLogic("equipment")
-        await ob.Delete({equipmentName})
+        if(equipmentName !== undefined){
+            await ob.Delete({equipmentName})
+        }else{
+            await ob.Delete({_id:new ObjectId(_id)})
+        }
         return "success"
     }
     async getEquipment(req){

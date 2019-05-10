@@ -24,27 +24,31 @@ export default class {
         
     }
     async createRoom(req){
-        let {roomName,support}=  req.body
+        let {roomName,equipments,description,support}=  req.body
         let auth = new security()
         let user = await auth.checkLogin(req)
         if(user === null)throw "not login"
         if(user.role !=="admin")throw "Permission denied"
         let ob = new baseLogic("room")
         if((await ob.Get({roomName})).length ===0){
-            await ob.Add({roomName,support,createBy:user.username})
+            await ob.Add({roomName,support,equipments,description,createBy:user.username})
             return "success"
         }else{
             throw "Room name exist"
         }
     }
     async removeRoom(req){
-        let {roomName}=  req.body
+        let {roomName,_id}=  req.body
         let auth = new security()
         let user = await auth.checkLogin(req)
         if(user === null)throw "not login"
         if(user.role !=="admin")throw "Permission denied"
         let ob = new baseLogic("room")
-        await ob.Delete({roomName})
+        if(roomName !== undefined){
+            await ob.Delete({roomName})
+        }else{
+            await ob.Delete({_id:new ObjectId(_id)})
+        }
         return "success"
     }
     async getRoom(req){

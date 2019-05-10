@@ -17,6 +17,7 @@ export default class {
         let ob = new baseLogic("users")
         let {username,password} = req.body
         let result = await ob.Get({username})
+        if(result.length === 0)throw "Account not found"
         let resultPass = bcrypt.compareSync(password, result[0].password)
         if (resultPass){
             let obS = new baseLogic("session")
@@ -84,7 +85,6 @@ export default class {
     async getUser(req){
         let user = this.checkLogin(req)
         if(user === null)throw "not login"
-        if(user.role !=="admin")throw "Permission denied"
         let ob = new baseLogic("users")
         return await ob.Get({})
     }
