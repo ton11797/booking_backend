@@ -64,7 +64,7 @@ export default class {
         return await this.bookingRoom(req.body)
     }
     async bookingRoom(para){
-        let {roomName,start,end,username,equipment,subject,descirption} = para
+        let {roomName,start,end,username,equipment,subject,description} = para
         let status = 1
         let checkout = false
         // if(start<1000000000000)start=start*1000
@@ -76,8 +76,7 @@ export default class {
         if((await obR.Get({roomName})).length === 0 )throw "room not exist"
         console.log(time)
         let ob = new baseLogic("booking")
-        // let room = await ob.Get({roomName,start:{$gt: time}})
-        let room = await ob.Get({})
+        let room = await ob.Get({roomName})
         if(room.length !== 0 ){
             for(let i=0;i< room.length;i++){
                 if(room[i].end <= start ){
@@ -86,7 +85,7 @@ export default class {
                     throw room[i]
                 }
             }
-            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,descirption})
+            await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,description})
             return "success"            
         }else{
             await ob.Add({roomName,start,end,username,equipment,subject,status,checkout,descirption})
