@@ -65,7 +65,7 @@ export default class {
     }
     async bookingRoom(para){
         let {roomName,start,end,username,equipment,subject,description} = para
-        let status = 1
+        let status = "waiting"
         let checkout = false
         // if(start<1000000000000)start=start*1000
         // if(end<1000000000000)end=end*1000
